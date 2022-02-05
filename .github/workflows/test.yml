@@ -1,0 +1,19 @@
+name: Test
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install heroku-buildpack-testrunner
+        run: |
+          git clone https://github.com/heroku/heroku-buildpack-testrunner.git
+          cd heroku-buildpack-testrunner
+          ./build.sh
+
+      - uses: actions/checkout@v2
+
+      - name: Run tests
+        run: make test
