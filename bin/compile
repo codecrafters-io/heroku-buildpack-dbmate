@@ -8,40 +8,33 @@ set -e
 BUILD_DIR=$1
 CACHE_DIR=$2
 
-GH_VERSION="2.5.0"
-GH_DESCRIPTION="gh-${GH_VERSION}"
-GH_DIST="gh_${GH_VERSION}_linux_amd64"
-GH_DIST_TAR="$GH_DIST.tar.gz"
-GH_HOME="$BUILD_DIR/.gh"
+DBMATE_VERSION="1.14.0"
+DBMATE_DESCRIPTION="dbmate-${DBMATE_VERSION}"
+DBMATE_DIST="dbmate_${DBMATE_VERSION}_linux_amd64"
+DBMATE_HOME="$BUILD_DIR/.dbmate"
 
 [ ! -d "$CACHE_DIR" ] && mkdir -p "$CACHE_DIR"
 
-# Download gh if not in cache
-if [ ! -f "$CACHE_DIR/$GH_DIST_TAR" ]; then
-  GH_URL="https://github.com/cli/cli/releases/download/v$GH_VERSION/$GH_DIST.tar.gz"
-  echo -n "-----> Downloading $GH_DESCRIPTION....."
-  curl --silent --location $GH_URL > "$CACHE_DIR/$GH_DIST_TAR"
+# Download dbmate if not in cache
+if [ ! -f "$CACHE_DIR/$DBMATE_DIST" ]; then
+  DBMATE_URL="https://github.com/amacneil/dbmate/releases/download/v$DBMATE_VERSION/dbmate-linux-amd64"
+  echo -n "-----> Downloading $DBMATE_DESCRIPTION....."
+  curl --silent --location $DBMATE_URL > "$CACHE_DIR/$DBMATE_DIST"
   echo " done"
 fi
 
-echo -n "-----> Installing ${GH_DESCRIPTION}...."
+echo -n "-----> Installing $DBMATE_DESCRIPTION...."
 
-# Extract gh
-cd "$BUILD_DIR"
-tar -zxf "$CACHE_DIR/$GH_DIST_TAR"
-mv "$GH_DIST" "$GH_HOME"
+# Extract dbmate
+mkdir -p "$BUILD_DIR/.dbmate/bin"
+cp "$CACHE_DIR/$DBMATE_DIST" "$BUILD_DIR/.dbmate/bin/dbmate"
 echo " done"
-
-if [ "${PIPESTATUS[*]}" != "0" ]; then
-  echo " !     Failed to install $GH_DIST"
-  exit 1
-fi
 
 echo -n "-----> Installing profile.d script...."
 mkdir -p "$BUILD_DIR/.profile.d"
-cat <<EOF > "$BUILD_DIR/.profile.d/gh.sh"
-export PATH="\$PATH:\$HOME/.gh/bin"
+cat <<EOF > "$BUILD_DIR/.profile.d/dbmate.sh"
+export PATH="\$PATH:\$HOME/.dbmate/bin"
 EOF
-chmod +x "$BUILD_DIR/.profile.d/gh.sh"
+chmod +x "$BUILD_DIR/.profile.d/dbmate.sh"
 
 echo " done"

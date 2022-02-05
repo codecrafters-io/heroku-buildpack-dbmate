@@ -7,6 +7,6 @@ testDetect()
   detect
 
   assertEquals 0 ${rtrn}
-  assertEquals "gh" "$(cat ${STD_OUT})"
+  assertEquals "dbmate" "$(cat ${STD_OUT})"
   assertEquals "" "$(cat ${STD_ERR})"
 }

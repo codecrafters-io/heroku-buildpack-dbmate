@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # bin/detect <build-dir>
 
-echo 'gh'
+echo 'dbmate'
 exit 0
