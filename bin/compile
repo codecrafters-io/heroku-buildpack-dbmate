@@ -28,6 +28,7 @@ echo -n "-----> Installing $DBMATE_DESCRIPTION...."
 # Extract dbmate
 mkdir -p "$BUILD_DIR/.dbmate/bin"
 cp "$CACHE_DIR/$DBMATE_DIST" "$BUILD_DIR/.dbmate/bin/dbmate"
+chmod +x "$BUILD_DIR/.dbmate/bin/dbmate"
 echo " done"
 
 echo -n "-----> Installing profile.d script...."

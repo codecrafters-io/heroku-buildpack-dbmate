@@ -28,4 +28,9 @@ testCompile()
 
   assertEquals 0 "${rtrn}"
   assertEquals "" "$(cat "$STD_ERR")"
+
+  capture "${BUILD_DIR}/.dbmate/bin/dbmate --version"
+  assertEquals 0 "${rtrn}"
+  assertContains "dbmate version 1.14.0" "$(cat "$STD_OUT")"
+  assertEquals "" "$(cat "$STD_ERR")"
 }
