@@ -1,5 +1,5 @@
 .PHONY: test
 
 test:
-	docker run -v $$(pwd):/app/buildpack:ro heroku/buildpack-testrunner
+	docker run -v $$(pwd):/app/buildpack:ro heroku/testrunner
 

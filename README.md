@@ -15,14 +15,14 @@ Example usage:
     ...
 
     remote: -----> dbmate app detected
-    remote: -----> Installing dbmate-1.14.0.... done
+    remote: -----> Installing dbmate-2.21.0.... done
     remote: -----> Installing profile.d script.... done
 
     ...
 
     $ heroku run 'dbmate --version'
     Running `dbmate --version` attached to terminal... up, run.3706
-    dbmate version 1.12.0
+    dbmate version 2.21.0
 
 Testing
 -------
@@ -33,5 +33,5 @@ This buildpack is tested using [heroku-buildpack-testrunner](https://github.com/
 and then run this command to run tests: 
 
 ```shell
-docker run -it -v $(pwd):/app/buildpack:ro heroku/buildpack-testrunner
+docker run -it -v $(pwd):/app/buildpack:ro heroku/testrunner
 ```

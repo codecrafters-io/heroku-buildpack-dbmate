@@ -8,11 +8,11 @@ testCompile()
   assertEquals 0 "${rtrn}"
   assertEquals "" "$(cat "$STD_ERR")"
 
-  assertContains "-----> Downloading dbmate-1.14.0"  "$(cat "$STD_OUT")"
-  assertTrue "Should have cached dbmate $(ls -la "$CACHE_DIR")" "[ -f $CACHE_DIR/dbmate_1.14.0_linux_amd64 ]"
-  assertFileMD5 "130c0661ccc008ac9fceec36a68a3972" "$CACHE_DIR/dbmate_1.14.0_linux_amd64"
+  assertContains "-----> Downloading dbmate-2.21.0"  "$(cat "$STD_OUT")"
+  assertTrue "Should have cached dbmate $(ls -la "$CACHE_DIR")" "[ -f $CACHE_DIR/dbmate_2.21.0_linux_amd64 ]"
+  assertFileMD5 "25951c590a15d6a65657dbf25ccc9b89" "$CACHE_DIR/dbmate_2.21.0_linux_amd64"
 
-  assertContains "-----> Installing dbmate-1.14.0"  "$(cat "$STD_OUT")"
+  assertContains "-----> Installing dbmate-2.21.0"  "$(cat "$STD_OUT")"
   assertTrue "Should have installed dbmate in build dir: $(ls -la "$BUILD_DIR")" "[ -d $BUILD_DIR/.dbmate ]"
 
   assertContains "-----> Installing profile.d script"  "$(cat "$STD_OUT")"
@@ -31,6 +31,6 @@ testCompile()
 
   capture "${BUILD_DIR}/.dbmate/bin/dbmate --version"
   assertEquals 0 "${rtrn}"
-  assertContains "dbmate version 1.14.0" "$(cat "$STD_OUT")"
+  assertContains "dbmate version 2.21.0" "$(cat "$STD_OUT")"
   assertEquals "" "$(cat "$STD_ERR")"
 }
